@@ -16,10 +16,11 @@ RUN apt-get update &&\
 
 RUN adduser ethnetintel
 
-RUN cd /home/ethnetintel &&\
-    git clone https://github.com/cubedro/eth-net-intelligence-api &&\
-    cd eth-net-intelligence-api &&\
-    npm install
+COPY package.json .
+
+RUN  npm install
+
+COPY . .
 
 USER ethnetintel
 ENTRYPOINT ["/tini", "--"]
